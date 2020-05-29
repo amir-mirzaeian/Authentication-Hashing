@@ -1,8 +1,8 @@
 # Authentication-DatabseEncryption
-using Encryption and dotenv modules to encrypt our data
+using hashing to secure the password
 
 ## Description:
-A very simple login/registration page which exncypts the password by the help of 'encryption' npm package. In this project, Encironment Variables have been used to keep Secrets safe.
+A very simple login/registration page with hashing the password by the help of 'md5' npm package.
 
 ## Technology used in the project
 Database: Mongodb  
@@ -15,7 +15,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const encrypt = require("mongoose-encryption");
+const md5 = require('md5');
 
 const app = express();
 
@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
     password: String
 });
 
-userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ['password']});
+
 const User = mongoose.model('User', userSchema);
 
 //TODO
